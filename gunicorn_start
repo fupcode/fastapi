@@ -1,10 +1,10 @@
 #!/bin/bash
 
 NAME=fastapi-app
-DIR=/home/fastapi-user/fastapi-nginx-gunicorn
-USER=fastapi-user
-GROUP=fastapi-user
-WORKERS=3
+DIR=/home/fpc/fastapi
+USER=fpc
+GROUP=fpc
+WORKERS=2
 WORKER_CLASS=uvicorn.workers.UvicornWorker
 VENV=$DIR/.venv/bin/activate
 BIND=unix:$DIR/run/gunicorn.sock
@@ -13,7 +13,7 @@ LOG_LEVEL=error
 cd $DIR
 source $VENV
 
-exec gunicorn main:app \
+exec gunicorn server:app \
   --name $NAME \
   --workers $WORKERS \
   --worker-class $WORKER_CLASS \
